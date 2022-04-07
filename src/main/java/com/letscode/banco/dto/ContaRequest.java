@@ -1,7 +1,6 @@
 package com.letscode.banco.dto;
 
 import com.letscode.banco.model.TipoConta;
-import com.letscode.banco.model.Usuario;
 import lombok.Getter;
 import lombok.Setter;
 import java.math.BigDecimal;

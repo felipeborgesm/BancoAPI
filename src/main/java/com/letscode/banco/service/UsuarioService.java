@@ -3,10 +3,12 @@ package com.letscode.banco.service;
 import com.letscode.banco.dto.UsuarioRequest;
 import com.letscode.banco.dto.UsuarioResponse;
 import com.letscode.banco.model.Usuario;
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 public interface UsuarioService {
-    List<Usuario> getAll(String nome);
+    Page<Usuario> getAll(String nome, int page, int size);
+
+    Page<UsuarioResponse> getAllByCpf(String cpf, int page, int size);
 
     UsuarioResponse create(UsuarioRequest usuarioRequest);
 

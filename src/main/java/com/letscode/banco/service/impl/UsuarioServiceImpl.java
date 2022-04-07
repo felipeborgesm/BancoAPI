@@ -6,8 +6,10 @@ import com.letscode.banco.model.Usuario;
 import com.letscode.banco.repository.UsuarioRepository;
 import com.letscode.banco.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import java.util.List;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
@@ -15,12 +17,26 @@ public class UsuarioServiceImpl implements UsuarioService {
   @Autowired UsuarioRepository usuarioRepository;
 
   @Override
-  public List<Usuario> getAll(String nome) {
+  public Page<Usuario> getAll(String nome, int page, int size) {
+
+    PageRequest pageRequest = PageRequest.of(
+            page, size, Sort.Direction.ASC, "nome"
+    );
+
     if (nome != null) {
-      return usuarioRepository.findByNome(nome);
+      return usuarioRepository.findByNome(nome, pageRequest);
     } else {
-      return usuarioRepository.findAll();
+      return usuarioRepository.findAll(pageRequest);
     }
+  }
+
+  @Override
+  public Page<UsuarioResponse> getAllByCpf(String cpf, int page, int size) {
+    PageRequest pageRequest = PageRequest.of(
+            page, size, Sort.Direction.ASC, "cpf"
+    );
+
+    return usuarioRepository.findByCpf(cpf, pageRequest);
   }
 
   @Override
@@ -35,6 +51,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     return usuarioRepository.findById(id).orElseThrow();
   }
 
+  @Override
   public Usuario update(UsuarioRequest usuarioRequest, Integer id) {
     Usuario usuario = usuarioRepository.findById(id).orElseThrow();
 
@@ -45,6 +62,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     return usuarioRepository.save(usuario);
   }
 
+  @Override
   public void delete(Integer id) {
     var usuario = usuarioRepository.findById(id).orElseThrow();
     usuarioRepository.delete(usuario);
