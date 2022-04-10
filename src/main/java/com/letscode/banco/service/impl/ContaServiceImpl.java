@@ -4,6 +4,7 @@ import com.letscode.banco.dto.ContaRequest;
 import com.letscode.banco.dto.ContaResponse;
 import com.letscode.banco.model.Conta;
 import com.letscode.banco.model.TipoConta;
+import com.letscode.banco.projection.ContaAgenciaView;
 import com.letscode.banco.projection.ContaView;
 import com.letscode.banco.repository.ContaRepository;
 import com.letscode.banco.service.ContaService;
@@ -60,7 +61,7 @@ public class ContaServiceImpl implements ContaService {
   }
 
   @Override
-  public Page<ContaView> getAllByAgencia(Integer agencia, int page, int size) {
+  public Page<ContaAgenciaView> getAllByAgencia(Integer agencia, int page, int size) {
     PageRequest pageRequest = PageRequest.of(
             page, size, Sort.Direction.ASC, "agencia"
     );

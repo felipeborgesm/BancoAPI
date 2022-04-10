@@ -4,6 +4,7 @@ import com.letscode.banco.dto.ContaRequest;
 import com.letscode.banco.dto.ContaResponse;
 import com.letscode.banco.model.Conta;
 import com.letscode.banco.model.TipoConta;
+import com.letscode.banco.projection.ContaAgenciaView;
 import com.letscode.banco.projection.ContaView;
 import com.letscode.banco.service.ContaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class ContaController {
   }
 
   @GetMapping("/agencia")
-  public Page<ContaView> getAllByAgencia (
+  public Page<ContaAgenciaView> getAllByAgencia (
           @RequestParam Integer agencia,
           @RequestParam(required = false, defaultValue = "0") int page,
           @RequestParam(required = false, defaultValue = "3") int size) {

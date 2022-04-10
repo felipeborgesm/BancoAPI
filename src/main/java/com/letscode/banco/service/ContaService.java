@@ -4,6 +4,7 @@ import com.letscode.banco.dto.ContaRequest;
 import com.letscode.banco.dto.ContaResponse;
 import com.letscode.banco.model.Conta;
 import com.letscode.banco.model.TipoConta;
+import com.letscode.banco.projection.ContaAgenciaView;
 import com.letscode.banco.projection.ContaView;
 import org.springframework.data.domain.Page;
 import java.util.List;
@@ -19,5 +20,5 @@ public interface ContaService {
 
     void delete(Integer id);
 
-    Page<ContaView> getAllByAgencia(Integer agencia, int page, int size);
+    Page<ContaAgenciaView> getAllByAgencia(Integer agencia, int page, int size);
 }
