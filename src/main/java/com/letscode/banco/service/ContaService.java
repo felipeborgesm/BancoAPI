@@ -19,5 +19,5 @@ public interface ContaService {
 
     void delete(Integer id);
 
-    Page<ContaResponse> getAllByAgencia(Integer agencia, int page, int size);
+    Page<ContaView> getAllByAgencia(Integer agencia, int page, int size);
 }

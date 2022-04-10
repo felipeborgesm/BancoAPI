@@ -15,14 +15,6 @@ public class UsuarioController {
 
   @Autowired UsuarioService usuarioService;
 
-  @GetMapping
-  public Page<Usuario> getAll(
-      @RequestParam(required = false) String nome,
-      @RequestParam(required = false, defaultValue = "0") int page,
-      @RequestParam(required = false, defaultValue = "3") int size) {
-    return usuarioService.getAll(nome, page, size);
-  }
-
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public UsuarioResponse create(@RequestBody UsuarioRequest usuarioRequest) {
@@ -32,6 +24,14 @@ public class UsuarioController {
   @GetMapping("/{id}")
   public Usuario getById(@PathVariable Integer id) {
     return usuarioService.getById(id);
+  }
+
+  @GetMapping
+  public Page<Usuario> getAll(
+      @RequestParam(required = false) String nome,
+      @RequestParam(required = false, defaultValue = "0") int page,
+      @RequestParam(required = false, defaultValue = "3") int size) {
+    return usuarioService.getAll(nome, page, size);
   }
 
   @GetMapping("/cpf")
@@ -51,4 +51,5 @@ public class UsuarioController {
   public void delete(@PathVariable Integer id) {
     usuarioService.delete(id);
   }
+
 }

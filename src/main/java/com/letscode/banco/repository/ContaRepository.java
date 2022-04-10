@@ -33,5 +33,5 @@ public interface ContaRepository extends JpaRepository<Conta, Integer> {
       "select new com.letscode.banco.dto.ContaResponse(c.id, c.numero, c.agencia, c.tipoConta, c.saldo, " +
               "c.dataCriacao, c.dataAtualizacao, c.usuario) " +
               "from Conta c where c.agencia = :agencia")
-  Page<ContaResponse> findByAgencia(@Param("agencia") Integer agencia, Pageable pageable);
+  Page<ContaView> findByAgencia(@Param("agencia") Integer agencia, Pageable pageable);
 }

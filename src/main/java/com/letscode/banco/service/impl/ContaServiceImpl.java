@@ -17,6 +17,7 @@ import java.util.List;
 
 @Service
 public class ContaServiceImpl implements ContaService {
+
   @Autowired ContaRepository contaRepository;
 
   @Autowired UsuarioService usuarioService;
@@ -59,7 +60,7 @@ public class ContaServiceImpl implements ContaService {
   }
 
   @Override
-  public Page<ContaResponse> getAllByAgencia(Integer agencia, int page, int size) {
+  public Page<ContaView> getAllByAgencia(Integer agencia, int page, int size) {
     PageRequest pageRequest = PageRequest.of(
             page, size, Sort.Direction.ASC, "agencia"
     );

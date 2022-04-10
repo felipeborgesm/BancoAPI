@@ -18,7 +18,7 @@ public class ContaController {
 
   @Autowired ContaService contaService;
 
-  @PostMapping
+  @PostMapping("/{id}")
   @ResponseStatus(HttpStatus.CREATED)
   public ContaResponse create(@RequestBody ContaRequest contaRequest, @PathVariable Integer id) {
     return contaService.create(contaRequest, id);
@@ -35,7 +35,7 @@ public class ContaController {
   }
 
   @GetMapping("/agencia")
-  public Page<ContaResponse> getAllByAgencia (
+  public Page<ContaView> getAllByAgencia (
           @RequestParam Integer agencia,
           @RequestParam(required = false, defaultValue = "0") int page,
           @RequestParam(required = false, defaultValue = "3") int size) {
