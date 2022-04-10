@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 @DataJpaTest
 @Profile("test")
-public class ContaRepositoryTest {
+public class UsuarioRepositoryTest {
 
     @Autowired
     private TestEntityManager entityManager;
